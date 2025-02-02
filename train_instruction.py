@@ -74,7 +74,6 @@ def get_instruct_datasets(args, downstream_dataset: str, eeg_max_len=-1, text_ma
             dataset_info['num_classes'] = 3
             dataset_info['result_idx'] = 11
             dataset_info['label_dic'] = {'Positive': 0, 'Neutral': 1, 'Negative': 2}
-            #dataset_info['label_dic'] = {'(A)': 0, '(C)': 1, '(B)': 2}
         elif downstream_dataset == 'TUAB':
             dataset_train, dataset_test, dataset_val = prepare_TUAB_dataset(Path(args.dataset_dir, 'TUAB/processed'), is_instruct=True, 
                                                                             eeg_max_len=eeg_max_len, text_max_len=text_max_len)
@@ -215,7 +214,7 @@ def main(args):
 
     concat_datasets = True
     all_datasets = []
-    for name in ['TUAB', 'TUEV', 'SEED', 'HMC', 'Workload', 'TUSL', 'TUSZ', 'zuco']:
+    for name in ['TUAB', 'TUEV', 'SEED', 'HMC', 'Workload', 'TUSL']:
         all_datasets.append(get_instruct_datasets(args, name, eeg_max_len=276, text_max_len=80))
     if concat_datasets:
         merge_datasets = ConcatDataset([dataset_info['dataset_train'] for dataset_info in all_datasets])
