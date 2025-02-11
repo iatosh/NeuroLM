@@ -242,7 +242,7 @@ def main(args):
     # init these up here, can override if init_from='resume' (i.e. from a checkpoint)
     iter_num = 0
 
-    tokenizer_ckpt_path = os.path.join(args.out_dir, args.tokenizer_dir, 'ckpt.pt')
+    tokenizer_ckpt_path = os.path.join(args.out_dir, args.tokenizer_path)
 
     if os.path.exists(os.path.join(checkpoint_out_dir, 'ckpt.pt')):
         init_from = 'resume'
@@ -289,9 +289,9 @@ def main(args):
         model = NeuroLM(gptconf, tokenizer_ckpt_path, init_from='gpt2')
         start_epoch = 0
     elif init_from == 'pretrained':
-        print(f"Initializing training from {args.NeuroLM_dir}")
+        print(f"Initializing training from {args.NeuroLM_path}")
         # resume training from a checkpoint.
-        ckpt_path = os.path.join(args.out_dir, args.NeuroLM_dir, 'ckpt.pt')
+        ckpt_path = os.path.join(args.out_dir, args.NeuroLM_path)
         checkpoint = torch.load(ckpt_path, map_location=device)
         checkpoint_model_args = checkpoint['model_args']
         # force these config attributes to be equal otherwise we can't even resume training
@@ -533,8 +533,8 @@ def get_args():
     parser = argparse.ArgumentParser('VQ training script', add_help=False)
     parser.add_argument('--out_dir', default='./', help='path where to save, empty for no saving')
     parser.add_argument('--dataset_dir', default='./', help='path where to save, empty for no saving')
-    parser.add_argument('--tokenizer_dir', default='checkpoints/VQ', help='path where tokenizer is')
-    parser.add_argument('--NeuroLM_dir', default='checkpoints/NeuroLM-B', help='path where NeuroLM model is')
+    parser.add_argument('--tokenizer_path', default='checkpoints/VQ.py', help='path where tokenizer is')
+    parser.add_argument('--NeuroLM_path', default='checkpoints/NeuroLM-B.pt', help='path where NeuroLM model is')
     parser.add_argument('--log_interval', default=10, type=int)
     parser.add_argument('--eval_only', default=False, action='store_true')
     parser.add_argument('--wandb_log', default=False, action='store_true')
