@@ -143,7 +143,7 @@ def main(args):
     decoder_args = dict(n_layer=4, n_head=12, n_embd=768, block_size=1024,
                     bias=False, dropout=0., num_classes=0, in_chans=128)
 
-    tokenizer_ckpt_path = os.path.join(args.out_dir, args.tokenizer_dir, 'ckpt.pt')
+    tokenizer_ckpt_path = os.path.join(args.out_dir, args.tokenizer_path)
     tokenizer_checkpoint = torch.load(tokenizer_ckpt_path, map_location=device)
     tokenizer_checkpoint_model_args = tokenizer_checkpoint['encoder_args']
     # force these config attributes to be equal otherwise we can't even resume training
@@ -410,7 +410,7 @@ def get_args():
     parser = argparse.ArgumentParser('VQ training script', add_help=False)
     parser.add_argument('--out_dir', default='./', help='path where to save, empty for no saving')
     parser.add_argument('--dataset_dir', default='./', help='path where to save, empty for no saving')
-    parser.add_argument('--tokenizer_dir', default='checkpoints/VQ', help='path where tokenizer is')
+    parser.add_argument('--tokenizer_path', default='checkpoints/VQ.pt', help='path where tokenizer is')
     parser.add_argument('--log_interval', default=10, type=int)
     parser.add_argument('--wandb_log', default=False, action='store_true')
     parser.add_argument('--wandb_project', default='NeuroLM')
