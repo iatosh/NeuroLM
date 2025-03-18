@@ -133,9 +133,7 @@ def get_instruct_datasets(args, downstream_dataset: str, eeg_max_len=-1, text_ma
                 pin_memory=True,
                 drop_last=True,
             )
-            sampler_val = torch.utils.data.DistributedSampler(
-                dataset_val, num_replicas=ddp_world_size, rank=ddp_rank, shuffle=True
-            )
+            sampler_val = torch.utils.data.SequentialSampler(dataset_val)
             data_loader_val = torch.utils.data.DataLoader(
                 dataset_val, sampler=sampler_val,
                 batch_size=int(args.batch_size * 1.5),
@@ -143,9 +141,7 @@ def get_instruct_datasets(args, downstream_dataset: str, eeg_max_len=-1, text_ma
                 pin_memory=True,
                 drop_last=False,
             )
-            sampler_test = torch.utils.data.DistributedSampler(
-                dataset_test, num_replicas=ddp_world_size, rank=ddp_rank, shuffle=True
-            )
+            sampler_test = torch.utils.data.SequentialSampler(dataset_test)
             data_loader_test = torch.utils.data.DataLoader(
                 dataset_test, sampler=sampler_test,
                 batch_size=int(args.batch_size * 1.5),
