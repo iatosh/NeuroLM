@@ -331,7 +331,7 @@ def main(args):
     # logging
     if args.wandb_log and master_process:
         import wandb
-        os.environ["WANDB_API_KEY"] = 'cadb7d597cc4b3e576281e0753db546527ddcd19'
+        os.environ["WANDB_API_KEY"] = args.wandb_api_key
         wandb.init(project=args.wandb_project, name=args.wandb_run_name, dir=os.path.join(args.out_dir, 'wandb'), resume=True)
 
 
