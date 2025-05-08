@@ -128,7 +128,7 @@ def get_instruct_datasets(args, downstream_dataset: str, eeg_max_len=-1, text_ma
             )
             data_loader_train = torch.utils.data.DataLoader(
                 dataset_train, sampler=sampler_train,
-                batch_size=args.batch_size,
+                batch_size=args.eeg_batch_size,
                 num_workers=10,
                 pin_memory=True,
                 drop_last=True,
@@ -136,7 +136,7 @@ def get_instruct_datasets(args, downstream_dataset: str, eeg_max_len=-1, text_ma
             sampler_val = torch.utils.data.SequentialSampler(dataset_val)
             data_loader_val = torch.utils.data.DataLoader(
                 dataset_val, sampler=sampler_val,
-                batch_size=int(args.batch_size * 1.5),
+                batch_size=int(args.eeg_batch_size * 1.5),
                 num_workers=10,
                 pin_memory=True,
                 drop_last=False,
@@ -144,7 +144,7 @@ def get_instruct_datasets(args, downstream_dataset: str, eeg_max_len=-1, text_ma
             sampler_test = torch.utils.data.SequentialSampler(dataset_test)
             data_loader_test = torch.utils.data.DataLoader(
                 dataset_test, sampler=sampler_test,
-                batch_size=int(args.batch_size * 1.5),
+                batch_size=int(args.eeg_batch_size * 1.5),
                 num_workers=10,
                 pin_memory=True,
                 drop_last=False,
@@ -152,7 +152,7 @@ def get_instruct_datasets(args, downstream_dataset: str, eeg_max_len=-1, text_ma
         else:
             data_loader_train = torch.utils.data.DataLoader(
                 dataset_train,
-                batch_size=args.batch_size,
+                batch_size=args.eeg_batch_size,
                 num_workers=10,
                 pin_memory=True,
                 drop_last=True,
@@ -160,7 +160,7 @@ def get_instruct_datasets(args, downstream_dataset: str, eeg_max_len=-1, text_ma
             )
             data_loader_val = torch.utils.data.DataLoader(
                 dataset_val,
-                batch_size=int(args.batch_size * 1.5),
+                batch_size=int(args.eeg_batch_size * 1.5),
                 num_workers=10,
                 pin_memory=True,
                 drop_last=False,
@@ -168,7 +168,7 @@ def get_instruct_datasets(args, downstream_dataset: str, eeg_max_len=-1, text_ma
             )
             data_loader_test = torch.utils.data.DataLoader(
                 dataset_test,
-                batch_size=int(args.batch_size * 1.5),
+                batch_size=int(args.eeg_batch_size * 1.5),
                 num_workers=10,
                 pin_memory=True,
                 drop_last=False,
@@ -220,7 +220,7 @@ def main(args):
             )
             data_loader_merge = torch.utils.data.DataLoader(
                 merge_datasets, sampler=sampler_merge,
-                batch_size=args.batch_size,
+                batch_size=args.eeg_batch_size,
                 num_workers=10,
                 pin_memory=True,
                 drop_last=True
@@ -228,7 +228,7 @@ def main(args):
         else:
             data_loader_merge = torch.utils.data.DataLoader(
                 merge_datasets,
-                batch_size=args.batch_size,
+                batch_size=args.eeg_batch_size,
                 num_workers=10,
                 pin_memory=True,
                 drop_last=True,
