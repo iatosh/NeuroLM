@@ -189,7 +189,7 @@ def main(args):
     # logging
     if args.wandb_log and master_process:
         import wandb
-        os.environ["WANDB_API_KEY"] = args.wandb_api_keys
+        os.environ["WANDB_API_KEY"] = args.wandb_api_key
         wandb.init(project=args.wandb_project, name=args.wandb_run_name, dir=os.path.join(args.out_dir, 'wandb'), resume=True)
 
     num_training_steps_per_epoch = len(dataset_train) // args.batch_size // ddp_world_size

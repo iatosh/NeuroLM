@@ -1,0 +1,63 @@
+# NeuroLM Inference Configuration
+
+# Model paths
+model:
+  checkpoint_path: checkpoints/NeuroLM-B.pt
+  tokenizer_path: checkpoints/VQ.pt
+  init_from: gpt2
+
+# Model architecture
+architecture:
+  n_layer: 12
+  n_head: 12
+  n_embd: 768
+  block_size: 1024
+  vocab_size: 50304
+  eeg_vocab_size: 8192
+  dropout: 0.0
+  bias: false
+
+# Dataset configuration
+dataset:
+  data_path: /home/atosh/Research/Datasets/HMC/
+  sample_idx: 0
+  eeg_max_len: 512
+  text_max_len: 128
+  is_instruct: true
+  is_val: true
+
+# Generation parameters
+generation:
+  max_new_tokens: 30
+  temperature: 1.0
+  top_k: 50
+
+# Visualization settings
+visualization:
+  max_samples: 1000
+  sampling_rate: 200
+  dpi: 150
+  figsize_per_channel: [12, 2]
+
+# Output configuration
+output:
+  base_dir: results/
+  save_visualization: true
+  save_json: true
+
+# Logging configuration
+logging:
+  wandb:
+    enabled: false
+    project: NeuroLM_Inference
+    run_name: inference_run
+  
+  console:
+    level: INFO
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Hardware settings
+hardware:
+  device: auto  # auto, cuda, cpu
+  fp16: false
+  compile: false

@@ -1,0 +1,15 @@
+{
+  "timestamp": "20250627_004632",
+  "sample_idx": 0,
+  "true_label": "A",
+  "input_prompt": "Question: Which sleep type does this EEG segment belong to? Options: (A) Wake. (B) NREM-1. (C) NREM-2. (D) NREM-3. (E) REM. Answer: (",
+  "generated_response": "Question: Which sleep type does this EEG segment belong to? Options: (A) Wake. (B) NREM-1. (C) NREM-2. (D) NREM-3. (E) REM. Answer: ()\nflight pas, a)\u201d.eto it hello\ufffdointments\ufffdaffer a)lly are-athe-,) was?<|endoftext|>",
+  "inference_time": 0.4221916198730469,
+  "model_path": "checkpoints/NeuroLM-B.pt",
+  "device": "cuda",
+  "eeg_shape": [
+    512,
+    200
+  ],
+  "n_channels": 4
+}
